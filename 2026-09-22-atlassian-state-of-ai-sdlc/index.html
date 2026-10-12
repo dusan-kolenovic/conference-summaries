@@ -47,7 +47,7 @@
       </div>
       <h1 data-words="100" style="font-weight:300; font-size:clamp(40px, 6vw, 76px); line-height:1.05; letter-spacing:-0.03em; color:#fff; max-width:16ch; text-wrap:balance">State of AI SDLC<br>One-day summit run by Atlassian</h1>
       <div data-reveal="200" style="display:flex; flex-direction:column; gap:16px; max-width:700px">
-        <p style="font-size:clamp(20px, 2.1vw, 25px); line-height:1.5; color:rgba(255,255,255,0.9); text-wrap:pretty">An open discussion on how AI is shaping the way software gets planned, built, and run with senior leadership from&nbsp;&nbsp;Atlassian, Vercel and Dropbox.</p>
+        <p style="font-size:clamp(20px, 2.1vw, 25px); line-height:1.5; color:rgba(255,255,255,0.9); text-wrap:pretty">An open discussion on how AI is shaping the way software gets planned, built, and run with senior leadership from Atlassian, Vercel and Dropbox.</p>
         
       </div><p data-reveal="320" style="max-width: 760px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.22); font-size: clamp(18px, 1.8vw, 20px); line-height: 1.55; color: rgba(255,255,255,0.75); text-wrap: pretty; height: 69px; width: 871px">Below are top 10 lessons from the best talks, along with actions you can do today.</p>
       
@@ -506,16 +506,19 @@ class Component extends DCLogic {
 
     root.querySelectorAll('[data-words]').forEach(el => {
       const orig = [...el.childNodes];
-      const words = el.textContent.trim().split(/\s+/);
       const frag = document.createDocumentFragment();
-      el._words = words.map((w, i) => {
-        const s = document.createElement('span');
-        s.textContent = w;
-        s.style.display = 'inline-block';
-        s.style.opacity = '0';
-        frag.appendChild(s);
-        if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
-        return s;
+      el._words = [];
+      orig.forEach(node => {
+        if (node.nodeName === 'BR') { frag.appendChild(document.createElement('br')); return; }
+        node.textContent.trim().split(/\s+/).filter(Boolean).forEach((w, i) => {
+          if (i > 0) frag.appendChild(document.createTextNode(' '));
+          const s = document.createElement('span');
+          s.textContent = w;
+          s.style.display = 'inline-block';
+          s.style.opacity = '0';
+          frag.appendChild(s);
+          el._words.push(s);
+        });
       });
       el.replaceChildren(frag);
       el._restore = () => { if (el._words) { el.replaceChildren(...orig); el._words = null; } };
