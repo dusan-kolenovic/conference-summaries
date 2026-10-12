@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State of AI SDLC — conference lessons</title>
+<script src="../support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/fonts.css">
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/colors.css">
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/typography.css">
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/spacing.css">
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/tokens/effects.css">
+  <link rel="stylesheet" href="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/styles.css">
+  <script src="../_ds/hours-design-system-a6c7f78c-f8d3-4aba-92a6-47ac35215e3e/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F5F3F0; font-family: var(--font-sans, 'Figtree', sans-serif); color: #1E2A3A; -webkit-font-smoothing: antialiased; }
+    a { color: #D95A3F; text-decoration: none; }
+    a:hover { color: #1E2A3A; }
+    p { margin: 0; }
+    h1, h2 { margin: 0; }
+  </style>
+</helmet>
+<div ref="{{ rootRef }}" style="min-height:100vh; background:var(--surface-light); font-family:var(--font-sans); color:var(--navy)">
+
+  <div style="position:fixed; top:0; left:0; right:0; height:3px; z-index:20; pointer-events:none">
+    <div ref="{{ progressRef }}" style="height:100%; background:var(--gradient-strip); transform:scaleX(0); transform-origin:left center"></div>
+  </div>
+  <div ref="{{ counterRef }}" style="position:fixed; right:24px; bottom:24px; z-index:20; display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; background:rgba(255,255,255,0.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); box-shadow:0 10px 30px rgba(30,42,58,0.10), 0 0 0 1px rgba(30,42,58,0.06); font-size:15px; font-weight:600; color:var(--navy); font-variant-numeric:tabular-nums; opacity:0; transform:translateY(10px) scale(0.96); transition:opacity 320ms cubic-bezier(0.23, 1, 0.32, 1), transform 320ms cubic-bezier(0.23, 1, 0.32, 1); pointer-events:none">
+    <span style="display:inline-block; overflow:hidden; height:1.25em; line-height:1.25em"><span ref="{{ counterNum }}" style="display:block; color:var(--coral-deep)">01</span></span>
+    <span style="color:var(--ink-300); font-weight:400">/</span>
+    <span style="color:var(--ink-500)">10</span>
+  </div>
+
+  <header style="position:relative; overflow:hidden; background-image:var(--grain), var(--gradient-dawn); background-size:128px, 100% 100%; min-height:800px; display:flex; flex-direction:column">
+    <div ref="{{ glowA }}" style="position:absolute; width:620px; height:620px; left:-120px; bottom:-260px; border-radius:50%; background:radial-gradient(circle, rgba(242,112,89,0.55) 0%, rgba(242,112,89,0) 65%); filter:blur(30px); pointer-events:none"></div>
+    <div ref="{{ glowB }}" style="position:absolute; width:560px; height:560px; right:-140px; top:180px; border-radius:50%; background:radial-gradient(circle, rgba(155,143,212,0.45) 0%, rgba(155,143,212,0) 65%); filter:blur(30px); pointer-events:none"></div>
+    <div ref="{{ heroInner }}" style="position:relative; width:100%; max-width:1120px; margin:0 auto; padding:128px clamp(20px, 5vw, 56px) 280px; box-sizing:border-box; display:flex; flex-direction:column; gap:40px">
+      <div data-reveal="0" style="display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px">
+        <span style="font-size:14px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.72)">Conference digest</span>
+        <span style="width:28px; height:1px; background:rgba(255,255,255,0.5)"></span>
+        <span style="font-size:17px; font-weight:500; color:#fff; font-variant-numeric:tabular-nums">September 22, 2026</span>
+      </div>
+      <h1 data-words="100" style="font-weight:300; font-size:clamp(40px, 6vw, 76px); line-height:1.05; letter-spacing:-0.03em; color:#fff; max-width:16ch; text-wrap:balance">State of AI SDLC<br>One-day summit run by Atlassian</h1>
+      <div data-reveal="200" style="display:flex; flex-direction:column; gap:16px; max-width:700px">
+        <p style="font-size:clamp(20px, 2.1vw, 25px); line-height:1.5; color:rgba(255,255,255,0.9); text-wrap:pretty">An open discussion on how AI is shaping the way software gets planned, built, and run with senior leadership from&nbsp;&nbsp;Atlassian, Vercel and Dropbox.</p>
+        
+      </div><p data-reveal="320" style="max-width: 760px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.22); font-size: clamp(18px, 1.8vw, 20px); line-height: 1.55; color: rgba(255,255,255,0.75); text-wrap: pretty; height: 69px; width: 871px">Below are top 10 lessons from the best talks, along with actions you can do today.</p>
+      
+    </div>
+  </header>
+
+  <main style="max-width:1120px; margin:0 auto; padding:0 clamp(20px, 5vw, 56px) 120px; box-sizing:border-box">
+
+    <sc-if value="{{ showIndex }}" hint-placeholder-val="{{ true }}">
+      <nav style="padding:72px 0 96px; display:flex; flex-direction:column; gap:28px">
+        <div data-reveal="0" style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-500)">The ten lessons</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 420px), 1fr)); column-gap:56px">
+          <a href="#l1" data-reveal="0" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">01</span><span>Code is no longer the bottleneck. Everything around it is.</span></a>
+          <a href="#l2" data-reveal="40" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">02</span><span>Context is the IP now, not the code.</span></a>
+          <a href="#l3" data-reveal="80" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">03</span><span>Skills are the stable primitive. The average prompt in the company must keep getting better.</span></a>
+          <a href="#l4" data-reveal="120" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">04</span><span>Route by task: the smartest model for planning, the cheapest capable model for execution, and measure cost per unit of work.</span></a>
+          <a href="#l5" data-reveal="160" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">05</span><span>Automate repetitive, well-scoped, clearly reviewable work first, and trigger it from events, not from people remembering.</span></a>
+          <a href="#l6" data-reveal="200" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">06</span><span>Governance means a written boundary of autonomy and a visible audit trail, not blanket approvals.</span></a>
+          <a href="#l7" data-reveal="240" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">07</span><span>Review is the new bottleneck.</span></a>
+          <a href="#l8" data-reveal="280" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">08</span><span>Adoption is not impact. Measure outcomes the customer can see, and expect the migration tax to dominate for a while.</span></a>
+          <a href="#l9" data-reveal="320" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">09</span><span>Protect deep work and human-to-human collaboration deliberately, because agents pull people toward talking to the agent instead of each other.</span></a>
+          <a href="#l10" data-reveal="360" style="display:flex; gap:18px; align-items:baseline; padding:16px 0; border-top:1px solid var(--ink-200); color:var(--navy); font-size:18px; line-height:1.45; transition:transform 240ms cubic-bezier(0.23, 1, 0.32, 1)" style-hover="transform:translateX(6px); color:var(--coral-deep)"><span style="font-size:13px; font-weight:600; color:var(--coral-deep); font-variant-numeric:tabular-nums">10</span><span>Feed the factory from real signals, and treat business-side input as the scarce resource.</span></a>
+        </div>
+      </nav>
+    </sc-if>
+
+    <!-- 01 -->
+    <section id="l1" data-screen-label="Lesson 01" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">01</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Code is no longer the bottleneck. Everything around it is.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; align-items:center; gap:24px; max-width:620px">
+            <div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums; flex:0 0 auto">16%</div>
+            <div style="flex:1 1 auto; display:flex; flex-direction:column; gap:10px">
+              <div style="height:12px; border-radius:999px; background:var(--ink-100); overflow:hidden"><div data-bar="" style="width:16%; height:100%; border-radius:999px; background:var(--coral)"></div></div>
+              <div style="display:flex; justify-content:space-between; gap:12px; font-size:15px; color:var(--ink-500)"><span>writing code</span><span>engineering work</span></div>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Atlassian measured that writing code is about <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">16%</span> of engineering work, and that AI raises merged-PR throughput by around&nbsp;<span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">10%</span> even when almost <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">100%</span> of PRs are AI-assisted. <br><b>This means complexity moved from coding to everywhere else</b>.</p>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Map where work waits (requirements, review, QA, cassette re-recording). Assign relevant KPIs and avoid getting blinded by pure code-writing efficiency increase.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section id="l2" data-screen-label="Lesson 02" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">02</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Context is king. Not the code.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; flex-wrap:wrap; gap:20px 56px">
+            <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">44%</div><div style="font-size:15px; color:var(--ink-500)">better answers</div></div>
+            <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">48%</div><div style="font-size:15px; color:var(--ink-500)">fewer tokens</div></div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">The complexity moved "one layer of abstraction higher", into the context, knowledge and skills a company feeds to its agents.</p>
+            <div style="display:flex; gap:12px"><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Agents grounded in Atlassian's teamwork knowledge graph gave <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">44%</span> better answers and used <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">48%</span> fewer tokens than baseline semantic search. This is&nbsp; especially true on relational questions like: "who owns this, what changed yesterday, what depends on this".</p></div>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Treat the KB, the registry and the skills repo as production assets with the same precision and accuracy standard as code (as they have a positive compounding effect over time).</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section id="l3" data-screen-label="Lesson 03" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">03</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Skills proved to be a relatively stable primitive. Prompts on the other hand need continual improvement.</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="160" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Skills “have maintained relative stability [...] for the last <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">12 months</span>” while models and harnesses kept changing.</p>
+          </div>
+          <div data-reveal="240">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Track skill usage. Make the campfire "show-and-tell" sessions not only around solutions but around skills as well.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section id="l4" data-screen-label="Lesson 04" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">04</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">As cost per unit of work becomes critical, "tokenomics" becomes a thing.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; align-items:flex-end; gap:24px; max-width:620px">
+            <div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums; flex:0 0 auto">28x</div>
+            <div style="font-size:15px; color:var(--ink-500); padding-bottom:6px">LLM spend rose 28x in a year</div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Vercel and Dropbox run a routing layer that picks the model per task. Dropbox started a "tokenomics" practice because spend rose <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">28x</span> in a year.<br>It's goal is to protect the gross margins and R&amp;D efficiency.&nbsp;</p>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">The goal is not to limit spend. The goal is to know whether token spend goes to the right problems. Dropbox tracks LLM cost per PR and per Jira ticket. Think about ways to implement this.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section id="l5" data-screen-label="Lesson 05" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">05</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Use events to trigger repetitive, <br>well-scoped, clearly reviewable work first.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; flex-wrap:wrap; gap:28px 56px; align-items:flex-end">
+            <div style="flex:1 1 360px; max-width:560px; display:flex; flex-direction:column; gap:12px">
+              <div style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-500)">issue cycle time</div>
+              <div style="display:grid; grid-template-columns:72px 1fr; gap:10px 16px; align-items:center">
+                <span data-count="" style="font-size:20px; font-weight:300; color:var(--ink-500); font-variant-numeric:tabular-nums">11.5</span>
+                <div style="height:12px; border-radius:999px; background:var(--ink-100); overflow:hidden"><div data-bar="" style="width:100%; height:100%; border-radius:999px; background:var(--ink-300)"></div></div>
+                <span data-count="" style="font-size:20px; font-weight:500; color:var(--navy); font-variant-numeric:tabular-nums">6.7 days</span>
+                <div style="height:12px; border-radius:999px; background:var(--ink-100); overflow:hidden"><div data-bar="" style="width:58.3%; height:100%; border-radius:999px; background:var(--coral)"></div></div>
+              </div>
+            </div>
+            <div style="display:flex; gap:48px">
+              <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">51%</div><div style="font-size:15px; color:var(--ink-500)">security tasks resolved <br>automatically</div></div>
+              <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">50</div><div style="font-size:15px; color:var(--ink-500)">engineering days a week <br>saved</div></div>
+            </div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Atlassian's Jira Coding Agent now resolves <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">51%</span> of potential security vulnerabilities automatically. <br>It has cut issue cycle time from <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">11.5</span> to <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">6.7 days</span>, and saved about <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">50 engineering days</span> a week. Changes labeled as low-risk go straight to the agent, high-impact changes get summarized to a human first.</p>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,280px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Pick two repetitive, scoped and reviewable workflows and wire each to a trigger. See examples:</p>
+                <div style="display:flex; flex-direction:column; gap:14px">
+                  <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Sentry error → Jira ticket, drafted by an agent and checked by a human.</p></div>
+                  <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Cassette refresh on prompt or model changes.&nbsp;</p></div>
+                  <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">In order for the approval queue not to become the bottleneck name the approver and set a deadline (SLA) for each HITL flow.</p></div>
+                </div>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section id="l6" data-screen-label="Lesson 06" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">06</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Governance is about transparency.</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="160" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Atlassian puts the agent session and its activity log on the Jira work item, so the team sees what the agent was asked, what it did and what changed as a consequence.</p>
+          </div>
+          <div data-reveal="240">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Have written boundaries as integral parts of agent’s ID and log agent actions where the team already looks (like Jira tickets).</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section id="l7" data-screen-label="Lesson 07" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">07</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Review is the new bottleneck.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; flex-wrap:wrap; gap:28px 56px; align-items:flex-end">
+            <div style="flex:1 1 320px; max-width:520px; display:flex; flex-direction:column; gap:12px">
+              <div style="font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-500)">median PR size</div>
+              <div style="display:grid; grid-template-columns:88px 1fr; gap:10px 16px; align-items:center">
+                <span data-count="" style="font-size:20px; font-weight:300; color:var(--ink-500); font-variant-numeric:tabular-nums">~40</span>
+                <div style="height:12px; border-radius:999px; background:var(--ink-100); overflow:hidden"><div data-bar="" style="width:57%; height:100%; border-radius:999px; background:var(--ink-300)"></div></div>
+                <span data-count="" style="font-size:20px; font-weight:500; color:var(--navy); font-variant-numeric:tabular-nums">~70 lines</span>
+                <div style="height:12px; border-radius:999px; background:var(--ink-100); overflow:hidden"><div data-bar="" style="width:100%; height:100%; border-radius:999px; background:var(--coral)"></div></div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">45%</div><div style="font-size:15px; color:var(--ink-500)">PR cycle time reduction</div></div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Atlassian's AI Reviewer checks every PR against standards defined once and against the Jira requirements. This reduced PR's cycle time by <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">45%</span>.</p></div>
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Dropbox saw median PR size double from <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">~40</span> to <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">~70 lines</span> and "change confidence" has fallen as engineers can read the code but now trust it less.</p></div>
+            </div>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,240px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Write down once the standards you care about, such as shared prompt blocks, naming, security rules and test coverage. Let an AI reviewer check every PR against them and against the ticket’s requirements. Treat prompts like code.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section id="l8" data-screen-label="Lesson 08" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">08</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Ultimately, the only outcomes that count,<br>are the ones for the end-customers.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:28px; max-width:760px">
+            <div style="display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:1px solid var(--ink-200)"><div data-count="" style="font-size:44px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">100%</div><div style="font-size:15px; color:var(--ink-500)">developers use AI</div></div>
+            <div style="display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:1px solid var(--ink-200)"><div data-count="" style="font-size:44px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">6</div><div style="font-size:15px; color:var(--ink-500)">self-reported hours saved per week</div></div>
+            <div style="display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:1px solid var(--ink-200)"><div data-count="" style="font-size:44px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">40%</div><div style="font-size:15px; color:var(--ink-500)">gap between perceived and actual productivity</div></div>
+            <div style="display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:2px solid var(--coral)"><div style="font-size:44px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--coral-deep); font-variant-numeric:tabular-nums"><span data-count="">1%</span><span style="font-size:20px; color:var(--ink-500); letter-spacing:0"> vs </span><span data-count="">28x</span></div><div style="font-size:15px; color:var(--ink-500)">innovation ratio against spend</div></div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty"><span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">100%</span> developers use AI in their work regularly, with <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">6</span> self-reported hours saved per week, and a <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">40%</span> gap between perceived and actual productivity (as actual productivity is smaller). <br>An innovation ratio up only <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">1%</span> against <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">28x</span> spend.</p></div>
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">The reason behind these numbers is that: the new capacity is going into migrations, upgrades and quality gates that sat in backlogs for years. Still their control metric is a changelog that lists only customer-visible changes.</p></div>
+            </div>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Make sure your work is covered by proper Analytics strategy (consult your local Product Leader for it) and track end-customer value.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section id="l9" data-screen-label="Lesson 09" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">09</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight: 300; font-size: clamp(26px, 3vw, 36px); line-height: 1.2; letter-spacing: -0.02em; color: var(--navy); max-width: 28ch; text-wrap: pretty; height: 164px; width: 900px"><span style="font-size: clamp(26px, 3vw, 36px); letter-spacing: -0.02em; text-wrap-mode: initial; color: var(--navy); font-family: var(--font-sans);">Deliberately p</span>rotect human-to-human collaboration, because agents pull people toward talking with them instead of real humans.</h2>
+        <sc-if value="{{ showCharts }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="160" style="display:flex; flex-wrap:wrap; gap:20px 56px">
+            <div style="display:flex; flex-direction:column; gap:8px"><div style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums"><span data-count="">48%</span></div><div style="font-size:15px; color:var(--ink-500)">employees felt AI actually improved collaboration<br></div></div>
+            <div style="display:flex; flex-direction:column; gap:8px"><div data-count="" style="font-size:52px; font-weight:300; letter-spacing:-0.03em; line-height:1; color:var(--navy); font-variant-numeric:tabular-nums">+11</div><div style="font-size:15px; color:var(--ink-500)">points of deep work increase at Dropbox</div></div>
+          </div>
+        </sc-if>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="240" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Across industry data, cross-team collaboration and deep work <b>fell for the first time</b>:&nbsp;<span style="color: var(--navy); font-style: italic;">“people are very comfortable talking to an agent [...]”.</span> Dropbox saw this and had their deep work went up <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">11 points </span>by making a deliberate effort sponsored by the Chief People Officer. Atlassian found only <span data-num="" style="font-weight: 600; color: var(--navy); background-image: linear-gradient(var(--peach-soft), var(--peach-soft)); background-repeat: no-repeat; background-position: 0px 90%; background-size: 100% 60%; padding: 0px 3px; border-radius: 3px; font-variant-numeric: tabular-nums;">48%</span> of its team felt AI actually improved collaboration.</p>
+          </div>
+          <div data-reveal="320">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,260px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <div style="display:flex; flex-direction:column; gap:14px">
+                  <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Agree in which phases people must talk to each other before an agent gets involved, and protect that time.</p></div>
+                  <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Dropbox is a useful example: it holds architecture and design reviews with senior engineers before code is written.</p></div>
+                </div>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section id="l10" data-screen-label="Lesson 10" style="padding:72px 0; border-top:1px solid var(--ink-200); display:flex; flex-direction:column; gap:20px; scroll-margin-top:24px">
+      <div data-reveal="0" data-numeral="" style="font-size:64px; font-weight:300; line-height:0.9; letter-spacing:-0.05em; color:var(--coral-deep); font-variant-numeric:tabular-nums">10</div>
+      <div style="min-width:0; display:flex; flex-direction:column; gap:40px">
+        <h2 data-reveal="80" style="font-weight:300; font-size:clamp(26px, 3vw, 36px); line-height:1.2; letter-spacing:-0.02em; color:var(--navy); max-width:28ch; text-wrap:pretty">Feed the factory from real signals, and treat business-side input as the scarce resource.</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap:40px; align-items:start">
+          <div data-reveal="160" style="display:flex; flex-direction:column; gap:20px; padding-top:32px">
+            <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--ink-300)"></span>Idea</div>
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Vercel feeds sales-call transcripts, support tickets and social signals into its backlog as prioritized context.</p></div>
+              <div style="display:flex; gap:12px"><span data-dot="" style="flex:0 0 6px; height:6px; margin-top:13px; border-radius:999px; background:var(--coral)"></span><p style="font-size:20px; line-height:1.6; color:var(--ink-700); text-wrap:pretty">Atlassian captures work from Slack threads with the reasoning attached, and a triage agent fills fields and finds duplicated work streams before a human looks.</p></div>
+            </div>
+          </div>
+          <div data-reveal="240">
+            <x-import component-from-global-scope="HoursDesignSystem_a6c7f7.Card" tone="cream" padding="{{ 32 }}" hint-size="100%,160px">
+              <div style="display:flex; flex-direction:column; gap:20px">
+                <div style="display:flex; align-items:center; gap:12px; font-size:16px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--coral-deep)"><span data-dash="" style="transform-origin:left center; width:24px; height:2px; border-radius:2px; background:var(--coral)"></span>Action</div>
+                <p style="font-size:20px; line-height:1.6; color:var(--ink-900); text-wrap:pretty">Link the transcript excerpt to each Jira item, so the next person or agent reads the original discussion, not a summary.</p>
+              </div>
+            </x-import>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-reveal="0" style="margin-top:24px; height:6px; border-radius:999px; background-image:var(--grain), var(--gradient-strip)"></div>
+    <div style="display:flex; justify-content:flex-end; padding-top:24px">
+      <a href="#" style="font-size:13px; font-weight:500; color:var(--ink-500)" style-hover="color:var(--coral-deep)">Back to top</a>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;animate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showCharts&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;showIndex&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  progressRef = React.createRef();
+  glowA = React.createRef();
+  glowB = React.createRef();
+  heroInner = React.createRef();
+  counterRef = React.createRef();
+  counterNum = React.createRef();
+  anims = [];
+  timers = [];
+  restore = [];
+  live = false;
+  active = -1;
+  counterShown = false;
+  mouse = { tx: 0, ty: 0, x: 0, y: 0 };
+  E = 'cubic-bezier(0.23, 1, 0.32, 1)';
+
+  animOn() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return (this.props.animate ?? true) && !reduce;
+  }
+
+  componentDidMount() {
+    this.onScroll = () => {
+      if (this.ticking) return;
+      this.ticking = true;
+      requestAnimationFrame(() => { this.ticking = false; this.frame(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll, { passive: true });
+    if (this.animOn()) this.setup();
+    this.frame();
+  }
+
+  componentDidUpdate(prev) {
+    if ((prev.animate ?? true) !== (this.props.animate ?? true)) {
+      this.teardown();
+      if (this.animOn()) this.setup();
+      this.frame();
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    this.teardown();
+  }
+
+  frame() {
+    const d = document.scrollingElement || document.documentElement;
+    const max = d.scrollHeight - d.clientHeight;
+    const p = max > 0 ? Math.min(1, d.scrollTop / max) : 0;
+    if (this.progressRef.current) this.progressRef.current.style.transform = `scaleX(${p})`;
+    if (!this.live) return;
+    const root = this.rootRef.current;
+    if (!root) return;
+    const vh = window.innerHeight;
+    const hero = this.heroInner.current;
+    if (hero) {
+      const hh = hero.parentElement.offsetHeight || 1;
+      const q = Math.min(1, Math.max(0, d.scrollTop / hh));
+      hero.style.translate = `0 ${(-q * 72).toFixed(1)}px`;
+      hero.style.opacity = (1 - q * 0.6).toFixed(3);
+    }
+    root.querySelectorAll('[data-numeral]').forEach(n => {
+      const r = n.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) return;
+      const off = (r.top + r.height / 2 - vh / 2) / vh;
+      n.style.translate = `0 ${(off * 28).toFixed(1)}px`;
+    });
+    const secs = root.querySelectorAll('section[id^="l"]');
+    let idx = -1;
+    secs.forEach((s, i) => { if (s.getBoundingClientRect().top <= vh * 0.5) idx = i; });
+    const last = secs[secs.length - 1];
+    const past = last && last.getBoundingClientRect().bottom < vh * 0.3;
+    this.setCounter(idx, idx >= 0 && !past);
+  }
+
+  setCounter(idx, show) {
+    const c = this.counterRef.current, num = this.counterNum.current;
+    if (!c || !num) return;
+    if (show !== this.counterShown) {
+      this.counterShown = show;
+      c.style.opacity = show ? '1' : '0';
+      c.style.transform = show ? 'none' : 'translateY(10px) scale(0.96)';
+    }
+    if (idx >= 0 && idx !== this.active) {
+      const dir = idx > this.active ? 1 : -1;
+      const first = this.active < 0;
+      this.active = idx;
+      const label = String(idx + 1).padStart(2, '0');
+      if (num.firstChild && num.firstChild.nodeType === 3) num.firstChild.nodeValue = label; else num.textContent = label;
+      if (!first) num.animate(
+        [{ transform: `translateY(${dir * 80}%)`, opacity: 0, filter: 'blur(2px)' }, { transform: 'translateY(0)', opacity: 1, filter: 'blur(0px)' }],
+        { duration: 340, easing: this.E }
+      );
+    }
+  }
+
+  setup() {
+    const root = this.rootRef.current;
+    if (!root) return;
+    this.live = true;
+    root.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(18px)'; });
+    root.querySelectorAll('[data-bar]').forEach(b => { b.style.transformOrigin = 'left center'; b.style.transform = 'scaleX(0)'; });
+    root.querySelectorAll('[data-num]').forEach(n => { n.style.backgroundSize = '0% 60%'; });
+    root.querySelectorAll('[data-dot]').forEach(n => { n.style.opacity = '0'; });
+    root.querySelectorAll('[data-dash]').forEach(n => { n.style.transform = 'scaleX(0)'; });
+    root.querySelectorAll('section[id^="l"]').forEach(s => { s.style.position = 'relative'; });
+
+    this.io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        this.io.unobserve(en.target);
+        if (en.target._words) this.playWords(en.target); else this.play(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    root.querySelectorAll('[data-words]').forEach(el => {
+      const orig = [...el.childNodes];
+      const words = el.textContent.trim().split(/\s+/);
+      const frag = document.createDocumentFragment();
+      el._words = words.map((w, i) => {
+        const s = document.createElement('span');
+        s.textContent = w;
+        s.style.display = 'inline-block';
+        s.style.opacity = '0';
+        frag.appendChild(s);
+        if (i < words.length - 1) frag.appendChild(document.createTextNode(' '));
+        return s;
+      });
+      el.replaceChildren(frag);
+      el._restore = () => { if (el._words) { el.replaceChildren(...orig); el._words = null; } };
+      this.restore.push(el._restore);
+      this.io.observe(el);
+    });
+    root.querySelectorAll('[data-reveal]').forEach(el => this.io.observe(el));
+
+    [[this.glowA, 60, -40, 19000], [this.glowB, -50, 50, 23000]].forEach(([r, x, y, dur]) => {
+      if (!r.current) return;
+      this.anims.push(r.current.animate(
+        [{ transform: 'translate(0,0) scale(1)' }, { transform: `translate(${x}px, ${y}px) scale(1.12)` }],
+        { duration: dur, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out' }
+      ));
+    });
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+      this.mloop = () => {
+        const m = this.mouse;
+        m.x += (m.tx - m.x) * 0.06;
+        m.y += (m.ty - m.y) * 0.06;
+        if (this.glowA.current) this.glowA.current.style.translate = `${(m.x * 56).toFixed(1)}px ${(m.y * 40).toFixed(1)}px`;
+        if (this.glowB.current) this.glowB.current.style.translate = `${(-m.x * 44).toFixed(1)}px ${(-m.y * 32).toFixed(1)}px`;
+        this.mraf = Math.abs(m.tx - m.x) + Math.abs(m.ty - m.y) > 0.001 ? requestAnimationFrame(this.mloop) : 0;
+      };
+      this.onMove = e => {
+        this.mouse.tx = e.clientX / window.innerWidth - 0.5;
+        this.mouse.ty = e.clientY / window.innerHeight - 0.5;
+        if (!this.mraf) this.mraf = requestAnimationFrame(this.mloop);
+      };
+      window.addEventListener('pointermove', this.onMove, { passive: true });
+    }
+  }
+
+  playWords(el) {
+    const d = parseFloat(el.dataset.words) || 0;
+    const spans = el._words;
+    spans.forEach((s, i) => {
+      const a = s.animate(
+        [{ opacity: 0, transform: 'translateY(0.35em)', filter: 'blur(10px)' }, { opacity: 1, transform: 'translateY(0)', filter: 'blur(0px)' }],
+        { duration: 1000, delay: d + i * 60, easing: this.E, fill: 'forwards' }
+      );
+      if (i === spans.length - 1) a.onfinish = () => el._restore();
+      this.anims.push(a);
+    });
+  }
+
+  play(el) {
+    const d = parseFloat(el.dataset.reveal) || 0;
+    const isNum = el.hasAttribute('data-numeral');
+    const isH = el.tagName === 'H2';
+    const kf = isNum
+      ? [{ opacity: 1, transform: 'translateY(100%)', clipPath: 'inset(-20% -10% 100% -10%)' }, { opacity: 1, transform: 'translateY(0)', clipPath: 'inset(-20% -10% -10% -10%)' }]
+      : isH
+        ? [{ opacity: 0, transform: 'translateY(14px)', filter: 'blur(6px)' }, { opacity: 1, transform: 'translateY(0)', filter: 'blur(0px)' }]
+        : [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }];
+    const a = el.animate(kf, { duration: isNum ? 1100 : 900, delay: d, easing: this.E, fill: 'forwards' });
+    a.onfinish = () => { el.style.opacity = ''; el.style.transform = ''; a.cancel(); };
+    this.anims.push(a);
+
+    if (isNum) {
+      const sec = el.closest('section');
+      if (sec) {
+        const ln = document.createElement('div');
+        Object.assign(ln.style, { position: 'absolute', left: '0', right: '0', top: '-1px', height: '1px', background: 'linear-gradient(90deg, var(--coral), var(--peach) 55%, rgba(255,176,136,0))', transformOrigin: 'left center', transform: 'scaleX(0)', pointerEvents: 'none' });
+        sec.appendChild(ln);
+        const la = ln.animate(
+          [{ transform: 'scaleX(0)', opacity: 1 }, { transform: 'scaleX(1)', opacity: 1, offset: 0.55 }, { transform: 'scaleX(1)', opacity: 0 }],
+          { duration: 2400, delay: d, easing: 'cubic-bezier(0.33, 1, 0.68, 1)' }
+        );
+        la.onfinish = () => ln.remove();
+        this.anims.push(la);
+        this.restore.push(() => ln.remove());
+      }
+    }
+
+    el.querySelectorAll('[data-dash]').forEach((n, i) => {
+      const da = n.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+        { duration: 700, delay: d + 120 + i * 80, easing: this.E, fill: 'forwards' });
+      da.onfinish = () => { n.style.transform = ''; da.cancel(); };
+      this.anims.push(da);
+    });
+    el.querySelectorAll('[data-dot]').forEach((n, i) => {
+      const oa = n.animate([{ opacity: 0, transform: 'scale(0.3)' }, { opacity: 1, transform: 'scale(1)' }],
+        { duration: 600, delay: d + 260 + i * 110, easing: this.E, fill: 'forwards' });
+      oa.onfinish = () => { n.style.opacity = ''; oa.cancel(); };
+      this.anims.push(oa);
+    });
+    el.querySelectorAll('[data-bar]').forEach((b, i) => {
+      const ba = b.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+        { duration: 1400, delay: d + 250 + i * 160, easing: this.E, fill: 'forwards' });
+      ba.onfinish = () => { b.style.transform = ''; ba.cancel(); };
+      this.anims.push(ba);
+    });
+    el.querySelectorAll('[data-num]').forEach((n, i) => {
+      const del = d + 350 + i * 140;
+      const na = n.animate([{ backgroundSize: '0% 60%' }, { backgroundSize: '100% 60%' }],
+        { duration: 700, delay: del, easing: this.E, fill: 'forwards' });
+      na.onfinish = () => { n.style.backgroundSize = ''; na.cancel(); };
+      this.anims.push(na);
+      this.countUp(n, del, 1000);
+    });
+    el.querySelectorAll('[data-count]').forEach((n, i) => this.countUp(n, d + 200 + i * 120, 1500));
+  }
+
+  countUp(el, delay, dur) {
+    const node = [...el.childNodes].find(c => c.nodeType === 3);
+    if (!node) return;
+    const final = node.nodeValue;
+    if (!/\d/.test(final)) return;
+    const fmt = e => final.replace(/\d+(?:\.\d+)?/g, m => {
+      const dec = (m.split('.')[1] || '').length;
+      return (parseFloat(m) * e).toFixed(dec);
+    });
+    node.nodeValue = fmt(0);
+    const t = setTimeout(() => {
+      const start = performance.now();
+      const step = now => {
+        const p = Math.min(1, (now - start) / dur);
+        const e = 1 - Math.pow(1 - p, 4);
+        node.nodeValue = p < 1 ? fmt(e) : final;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, delay);
+    this.timers.push(() => { clearTimeout(t); node.nodeValue = final; });
+  }
+
+  teardown() {
+    this.live = false;
+    if (this.io) this.io.disconnect();
+    if (this.onMove) window.removeEventListener('pointermove', this.onMove);
+    if (this.mraf) cancelAnimationFrame(this.mraf);
+    this.mraf = 0;
+    this.anims.forEach(a => a.cancel());
+    this.anims = [];
+    this.timers.forEach(f => f());
+    this.timers = [];
+    this.restore.forEach(f => f());
+    this.restore = [];
+    this.setCounter(-1, false);
+    this.active = -1;
+    const root = this.rootRef.current;
+    if (!root) return;
+    root.querySelectorAll('[data-reveal]').forEach(el => { el.style.opacity = ''; el.style.transform = ''; el.style.clipPath = ''; });
+    root.querySelectorAll('[data-bar], [data-dash]').forEach(b => { b.style.transform = ''; });
+    root.querySelectorAll('[data-num]').forEach(n => { n.style.backgroundSize = ''; });
+    root.querySelectorAll('[data-dot]').forEach(n => { n.style.opacity = ''; });
+    root.querySelectorAll('[data-numeral]').forEach(n => { n.style.translate = ''; });
+    root.querySelectorAll('section[id^="l"]').forEach(s => { s.style.position = ''; });
+    [this.heroInner, this.glowA, this.glowB].forEach(r => { if (r.current) { r.current.style.translate = ''; } });
+    if (this.heroInner.current) this.heroInner.current.style.opacity = '';
+  }
+
+  renderVals() {
+    return {
+      rootRef: this.rootRef,
+      progressRef: this.progressRef,
+      glowA: this.glowA,
+      glowB: this.glowB,
+      heroInner: this.heroInner,
+      counterRef: this.counterRef,
+      counterNum: this.counterNum,
+      showCharts: this.props.showCharts ?? true,
+      showIndex: this.props.showIndex ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
